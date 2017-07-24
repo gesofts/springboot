@@ -1,0 +1,49 @@
+server:
+  context-path: /dev
+  port: 8080
+spring:
+#  session:
+#    store-type: none
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/springboot
+    username: root
+    password: root
+    driver-class-name: org.gjt.mm.mysql.Driver
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
+  http:
+    encoding: UTF-8
+# mybatis配置
+#mybatis:
+#  config-location: classpath:mybatis-config.xml
+#  #entity扫描的包名
+#  type-aliases-package: com.jarvis.admin.dao.domain
+
+
+
+redis:
+    # redis数据库索引（默认为0），我们使用索引为3的数据库，避免和其他数据库冲突
+    database: 3
+    # redis服务器地址（默认为localhost）
+    host: localhost
+    # redis端口（默认为6379）
+    port: 6379
+    # redis访问密码（默认为空）
+    password:
+    # redis连接超时时间（单位为毫秒）
+    timeout: 0
+    # redis连接池配置
+    pool:
+      # 最大可用连接数（默认为8，负数表示无限）
+      max-active: 8
+      # 最大空闲连接数（默认为8，负数表示无限）
+      max-idle: 8
+      # 最小空闲连接数（默认为0，该值只有为正数才有作用）
+      min-idle: 0
+      # 从连接池中获取连接最大等待时间（默认为-1，单位为毫秒，负数表示无限）
+      max-wait: -1

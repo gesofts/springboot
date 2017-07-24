@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jarvis.admin.dao.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.jarvis.admin.dao.domain.Product">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+  </resultMap>
+
+    <!-- 开启基于redis的二级缓存 -->
+    <!--&amp;lt;cache type="com.jarvis.redis.RedisConfig"/&amp;gt;-->
+
+    <select id="select" resultType="Product">
+        SELECT * FROM product WHERE id = #{id} LIMIT 1
+    </select>
+
+    <update flushCache="true" id="update" parameterType="Product">
+        UPDATE product SET name = #{name}, price = #{price} WHERE id = #{id} LIMIT 1
+    </update>
+  <select id="getProductByName" resultMap="Product">
+    SELECT * FROM product
+  </select>
+  <select id="getCounts" resultMap="java.lang.Integer">
+    SELECT count(*) FROM product
+  </select>
+</mapper>
